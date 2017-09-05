@@ -1,0 +1,33 @@
+.button,
+button {
+	@include vendor('appearance', 'none');
+	@include vendor('transition', 'background-color #{_effect(transition)} ease-in-out');
+	border: 0;
+	background-color: _palette(button, bg);
+	color: _palette(button, fg);
+	cursor: pointer;
+	display: inline-block;
+	height: 3.5em;
+	line-height: 3.5em;
+	outline: 0;
+	padding: 0 1em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+
+	&.rectangular {
+		border-radius: 0;
+	}
+
+	&.rounded {
+		border-radius: 1em;
+	}
+
+	&:hover {
+		background-color: _palette(button, hover);
+	}
+
+	&:active {
+		background-color: _palette(button, active);
+	}
+}

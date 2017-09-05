@@ -1,0 +1,42 @@
+// ***************************************************************
+// Function
+// ***************************************************************
+/// Gets a palette value.
+/// @param {string} $keys Key(s).
+/// @return {string} Value.
+@function _palette($keys...) {
+	@return val($palette, $keys...);
+}
+
+// ***************************************************************
+// Palette
+// ***************************************************************
+$highlight:     rgb(13, 137, 228);
+
+$palette: (
+    bg:				    white,
+    fg:				    #414141,
+    border:				#414141,
+    highlight:          $highlight,
+
+    header: (
+        bg:             white,
+        fg:             #414141,
+        hover-bg:		$highlight,
+        overlay-fg:     white,
+        overlay-bg:     transparentize(black, 0.6),
+    ),
+
+    footer: (
+        bg:				#39454b,
+        fg:				white,
+        credits:		rgba(185,186,187,0.2),
+    ),
+
+    button: (
+        bg:				transparentize($highlight, 0.2),
+        fg:				white,
+        hover:          lighten(transparentize($highlight, 0.2), 10%),
+        active:         darken(transparentize($highlight, 0.2), 5%),
+    )
+);

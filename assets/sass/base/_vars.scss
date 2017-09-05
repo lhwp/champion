@@ -1,0 +1,39 @@
+/// Gets a breakpoint value
+@function _breakpoint($keys...) {
+	@return val($breakpoints, $keys...);
+}
+$breakpoints: (
+	large: 		min-width+': '+1280px,
+	medium:		min-width+': '+768px,
+	small:		max-width+': '+767px
+);
+
+/// Gets a misc value
+@function _misc($keys...) {
+	@return val($misc, $keys...);
+}
+// Misc.
+$misc: (
+	z-index-base:		100
+);
+
+
+/// Gets an effect duration value.
+@function _effect($keys...) {
+	@return val($effect, $keys...);
+}
+// Effect durations
+$effect: (
+	transition:			0.2s,
+	fade-in:			1s
+);
+
+
+/// Gets a size value.
+@function _size($keys...) {
+	@return val($size, $keys...);
+}
+// Size.
+$size: (
+	element-margin:		2em
+);

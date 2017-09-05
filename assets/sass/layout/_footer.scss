@@ -1,0 +1,67 @@
+#footer {
+	@include vendor('display', 'grid');
+	text-align: center;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"footer_title footer_title"
+		"contacts contacts"
+		"social social"
+		"copyright copyright"
+		"credits credits";
+	
+	@media only screen and (_breakpoint(large)) {
+		grid-template-columns: 10% 1fr 1fr 10%;
+		grid-template-rows: auto;
+		grid-template-areas:
+			". footer_title footer_title ."
+			". social contacts ."
+			". social contacts ."
+			". copyright copyright ."
+			". credits credits .";
+	}
+
+	background: _palette(footer, bg);
+	color: _palette(footer, fg);
+	overflow: hidden;
+	min-height: 50vh;	// needed to remove white space under the footer
+
+	> .fa-inverse {
+		color: _palette(footer, bg);
+	}
+
+	a {
+		display: inline-block;
+		margin: 0;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	> #footer_title {
+		grid-area: footer_title;
+	}
+	> #contacts {
+		grid-area: contacts;
+		@media only screen and (_breakpoint(large)) {
+			text-align: left;
+		}
+	}
+	> #social {
+		grid-area: social;
+		@media only screen and (_breakpoint(large)) {
+			text-align: left;
+		}
+	}
+	> #copyright {
+		grid-area: copyright;
+	}
+	> #credits {
+		grid-area: credits;
+		padding-top: 3em;
+		color: _palette(footer, credits);
+		> a {
+			text-decoration: underline;
+		}
+	}
+
+}

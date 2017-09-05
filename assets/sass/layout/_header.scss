@@ -1,0 +1,137 @@
+#header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+	background-color: _palette(header, bg);
+
+	@include vendor('display', 'grid');
+	@include vendor('align-items', 'center');
+	grid-template-columns: 1.8rem auto 1.8rem;
+	grid-template-rows: 1.8rem;
+	grid-template-areas: 
+		"logo title menu_icon";
+
+	> #logo {
+		grid-area: logo;
+		text-align: center;
+		z-index: 1001;
+		color: _palette(header, fg);
+
+		overflow: hidden; /* Disable scroll + align baseline */
+	}
+
+	> #title {
+		grid-area: title;
+		text-align: center;
+		z-index: 1001;
+		color: _palette(header, fg);
+
+		overflow: hidden; /* Disable scroll + align baseline */
+	}
+
+	> #menu_icon {
+		grid-area: menu_icon;
+		text-align: center;
+		z-index: 1001;
+		color: _palette(header, fg);
+
+		overflow: hidden; /* Disable scroll + align baseline */
+	}
+
+	@media only screen and (_breakpoint(medium)) {
+		grid-template-columns: 2.5rem 15rem auto;
+		grid-template-rows: 3rem;
+		grid-template-areas: "logo title menu";
+
+		font-size: 1.2rem;
+		line-height: 3rem;
+
+		> #menu_icon {
+			display: none;
+		}
+
+		> #logo {
+			grid-area: logo;
+			overflow: hidden; /* Disable scroll + align baseline */
+		}
+	
+		> #title {
+			grid-area: title;
+			margin: auto auto auto 0;
+			overflow: hidden; /* Disable scroll + align baseline */
+		}
+	}
+}
+
+
+
+
+/* The menu is an overlay menu on small screens 
+and fully expanded by default on larger screens */ 
+
+@media only screen and (_breakpoint(small)) {
+	#overlay_menu {
+		position: fixed;
+		z-index: 1000;
+		top: 1.8em; // toggled with jquery slideToggle()
+		left: 0;
+		height: 1.8rem;
+		width: 100%;
+		background-color: _palette(header, overlay-bg);
+		
+		overflow: hidden; /* Disable scroll + align baseline */
+		text-align: center;
+
+		/* The navigation menu links */
+		a {
+			display: inline-block;
+			text-decoration: none;
+			font-size: 0.8rem;
+			color: _palette(header, overlay-fg);
+			padding: 0 0.2rem 0 0.2rem;
+			transition: 0.3s;
+		}
+
+		&:first-child {
+			padding-left: auto;
+		}
+
+		&:last-child {
+				padding-right: auto;
+		}
+	}
+}
+
+@media only screen and (_breakpoint(medium)) {
+	#overlay_menu {
+		grid-area: menu; /* defined above inside #header */
+		margin: auto 0 auto auto;
+		overflow: hidden; /* Disable scroll + align baseline */
+
+		/* The navigation menu links */
+		a {
+			display: inline-block;
+			height: 3rem;
+			align-self: top;
+			text-decoration: none;
+			font-size: 1.2rem;
+			color: _palette(header, fg);
+			padding: 0 0.2rem 0 0.2rem;
+			outline: 0;
+		}
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0.5rem;
+		}
+		
+		a:hover {
+			background: _palette(header, hover-bg);
+		}
+	}
+}
