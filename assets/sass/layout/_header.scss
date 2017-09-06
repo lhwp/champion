@@ -5,133 +5,117 @@
 	z-index: 1000;
 	width: 100%;
 	background-color: _palette(header, bg);
+	height: 3rem;
 
-	@include vendor('display', 'grid');
-	@include vendor('align-items', 'center');
-	grid-template-columns: 1.8rem auto 1.8rem;
-	grid-template-rows: 1.8rem;
-	grid-template-areas: 
-		"logo title menu_icon";
+	// The menu is an overlay menu on small screens 
+	//and fully expanded by default on larger screens
+	@media only screen and (_breakpoint(small)) {
+		font-size: 1.2rem;
+		// Use flexgrid to stretch out the three menu elements:
+		// The logo, the title, and the menu icon for toggling
+		// the overlay menu
+		@include vendor('display', 'flex');
+		@include vendor('justify-content', 'space-between');
+		@include vendor('align-content', 'center');
+		@include vendor('align-items', 'center');
+		
+		> #logo {
+			margin-left: 0.5rem;
+			color: _palette(header, fg);
+		}
+		> #menu_icon {
+			margin-right: 0.5rem;
+			color: _palette(header, fg);
+		}
 
-	> #logo {
-		grid-area: logo;
-		text-align: center;
-		z-index: 1001;
-		color: _palette(header, fg);
+		> #overlay_menu {
+			position: fixed;
+			z-index: 1000;
+			top: 3rem; // toggled with jquery slideToggle()
+			left: 0;
+			height: 3rem;
+			width: 100%;
+			background-color: _palette(header, overlay-bg);
+			
+			overflow: hidden; // Disable scroll + align baseline
+			text-align: center;
 
-		overflow: hidden; /* Disable scroll + align baseline */
-	}
+			@include vendor('display', 'flex');
+			@include vendor('justify-content', 'space-around');
+			@include vendor('align-content', 'center');
+			@include vendor('align-items', 'center');
 
-	> #title {
-		grid-area: title;
-		text-align: center;
-		z-index: 1001;
-		color: _palette(header, fg);
+			// The navigation menu links
+			a {
+				display: inline-block;
+				text-decoration: none;
+				margin: auto 0;
+				font-size: 1rem;
+				color: _palette(header, overlay-fg);
+				padding: 0 0.2rem 0 0.2rem;
+				transition: 0.3s;
+			}
 
-		overflow: hidden; /* Disable scroll + align baseline */
-	}
+			&:first-child {
+				padding-left: auto;
+			}
 
-	> #menu_icon {
-		grid-area: menu_icon;
-		text-align: center;
-		z-index: 1001;
-		color: _palette(header, fg);
-
-		overflow: hidden; /* Disable scroll + align baseline */
+			&:last-child {
+				padding-right: auto;
+			}
+		}
 	}
 
 	@media only screen and (_breakpoint(medium)) {
-		grid-template-columns: 2.5rem 15rem auto;
-		grid-template-rows: 3rem;
-		grid-template-areas: "logo title menu";
-
 		font-size: 1.2rem;
-		line-height: 3rem;
 
+		// on larger screens, hide the menu icon
 		> #menu_icon {
-			display: none;
+			display: none;			
 		}
 
+		// float the logo + title to left
+		// and the expanded menu to the right
 		> #logo {
-			grid-area: logo;
-			overflow: hidden; /* Disable scroll + align baseline */
-		}
-	
-		> #title {
-			grid-area: title;
-			margin: auto auto auto 0;
-			overflow: hidden; /* Disable scroll + align baseline */
-		}
-	}
-}
-
-
-
-
-/* The menu is an overlay menu on small screens 
-and fully expanded by default on larger screens */ 
-
-@media only screen and (_breakpoint(small)) {
-	#overlay_menu {
-		position: fixed;
-		z-index: 1000;
-		top: 1.8em; // toggled with jquery slideToggle()
-		left: 0;
-		height: 1.8rem;
-		width: 100%;
-		background-color: _palette(header, overlay-bg);
-		
-		overflow: hidden; /* Disable scroll + align baseline */
-		text-align: center;
-
-		/* The navigation menu links */
-		a {
-			display: inline-block;
-			text-decoration: none;
-			font-size: 0.8rem;
-			color: _palette(header, overlay-fg);
-			padding: 0 0.2rem 0 0.2rem;
-			transition: 0.3s;
-		}
-
-		&:first-child {
-			padding-left: auto;
-		}
-
-		&:last-child {
-				padding-right: auto;
-		}
-	}
-}
-
-@media only screen and (_breakpoint(medium)) {
-	#overlay_menu {
-		grid-area: menu; /* defined above inside #header */
-		margin: auto 0 auto auto;
-		overflow: hidden; /* Disable scroll + align baseline */
-
-		/* The navigation menu links */
-		a {
-			display: inline-block;
-			height: 3rem;
-			align-self: top;
-			text-decoration: none;
-			font-size: 1.2rem;
+			float: left;
+			margin-left: 0.5rem;
+			margin-top: 0.5rem;
 			color: _palette(header, fg);
-			padding: 0 0.2rem 0 0.2rem;
-			outline: 0;
-		}
 
-		&:first-child {
-			padding-left: 0;
+			&:hover {
+				color: _palette(header, hover-bg);
+			}
 		}
+		> #title {
+			float: left;
+			margin-left: 0.5rem;
+			margin-top: 0.5rem;
+			color: _palette(header, fg);
+		}
+		#overlay_menu {
+			float: right;
+			margin-left: 0.5rem;
+			margin-top: 0.5rem;
 
-		&:last-child {
-			padding-right: 0.5rem;
-		}
-		
-		a:hover {
-			background: _palette(header, hover-bg);
+			// The navigation menu links
+			> a {
+				display: inline-block;
+				text-decoration: none;
+				color: _palette(header, fg);
+				text-align: center;
+				height: 3rem;
+				padding-right: 0.5rem;
+				outline: 0;
+
+				&:hover {
+					color: _palette(header, hover-bg);
+				}
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+
 		}
 	}
 }
