@@ -9,7 +9,10 @@
 		"social social"
 		"copyright copyright"
 		"credits credits";
-	
+//	TODO: Commented out as this causes alignment problems on Edge 15.
+//        Test again on Edge 16 in October 2017 which supposedly modernizes
+//        the css grid implementation.
+/*
 	@media only screen and (_breakpoint(large)) {
 		grid-template-columns: 10% 1fr 1fr 10%;
 		grid-template-rows: auto;
@@ -20,7 +23,7 @@
 			". copyright copyright ."
 			". credits credits .";
 	}
-
+*/
 	background: _palette(footer, bg);
 	color: _palette(footer, fg);
 	overflow: hidden;
@@ -42,16 +45,16 @@
 	}
 	> #contacts {
 		grid-area: contacts;
-		@media only screen and (_breakpoint(large)) {
+/*		@media only screen and (_breakpoint(large)) {
 			text-align: left;
 		}
-	}
+*/	}
 	> #social {
 		grid-area: social;
-		@media only screen and (_breakpoint(large)) {
+/*		@media only screen and (_breakpoint(large)) {
 			text-align: left;
 		}
-	}
+*/	}
 	> #copyright {
 		grid-area: copyright;
 	}

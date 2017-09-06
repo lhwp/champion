@@ -867,15 +867,22 @@ button {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: "footer_title footer_title" "contacts contacts" "social social" "copyright copyright" "credits credits";
+  /*
+  	@media only screen and (_breakpoint(large)) {
+  		grid-template-columns: 10% 1fr 1fr 10%;
+  		grid-template-rows: auto;
+  		grid-template-areas:
+  			". footer_title footer_title ."
+  			". social contacts ."
+  			". social contacts ."
+  			". copyright copyright ."
+  			". credits credits .";
+  	}
+  */
   background: #39454b;
   color: white;
   overflow: hidden;
   min-height: 50vh; }
-  @media only screen and (min-width: 1280px) {
-    #footer {
-      grid-template-columns: 10% 1fr 1fr 10%;
-      grid-template-rows: auto;
-      grid-template-areas: ". footer_title footer_title ." ". social contacts ." ". social contacts ." ". copyright copyright ." ". credits credits ."; } }
   #footer > .fa-inverse {
     color: #39454b; }
   #footer a {
@@ -886,15 +893,17 @@ button {
   #footer > #footer_title {
     grid-area: footer_title; }
   #footer > #contacts {
-    grid-area: contacts; }
-    @media only screen and (min-width: 1280px) {
-      #footer > #contacts {
-        text-align: left; } }
+    grid-area: contacts;
+    /*		@media only screen and (_breakpoint(large)) {
+    			text-align: left;
+    		}
+    */ }
   #footer > #social {
-    grid-area: social; }
-    @media only screen and (min-width: 1280px) {
-      #footer > #social {
-        text-align: left; } }
+    grid-area: social;
+    /*		@media only screen and (_breakpoint(large)) {
+    			text-align: left;
+    		}
+    */ }
   #footer > #copyright {
     grid-area: copyright; }
   #footer > #credits {
@@ -910,15 +919,22 @@ button {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas: "footer_title footer_title" "contacts contacts" "social social" "copyright copyright" "credits credits";
+  /*
+  	@media only screen and (_breakpoint(large)) {
+  		grid-template-columns: 10% 1fr 1fr 10%;
+  		grid-template-rows: auto;
+  		grid-template-areas:
+  			". footer_title footer_title ."
+  			". social contacts ."
+  			". social contacts ."
+  			". copyright copyright ."
+  			". credits credits .";
+  	}
+  */
   background: #39454b;
   color: white;
   overflow: hidden;
   min-height: 50vh; }
-  @media only screen and (min-width: 1280px) {
-    #footer {
-      grid-template-columns: 10% 1fr 1fr 10%;
-      grid-template-rows: auto;
-      grid-template-areas: ". footer_title footer_title ." ". social contacts ." ". social contacts ." ". copyright copyright ." ". credits credits ."; } }
   #footer > .fa-inverse {
     color: #39454b; }
   #footer a {
@@ -929,15 +945,17 @@ button {
   #footer > #footer_title {
     grid-area: footer_title; }
   #footer > #contacts {
-    grid-area: contacts; }
-    @media only screen and (min-width: 1280px) {
-      #footer > #contacts {
-        text-align: left; } }
+    grid-area: contacts;
+    /*		@media only screen and (_breakpoint(large)) {
+    			text-align: left;
+    		}
+    */ }
   #footer > #social {
-    grid-area: social; }
-    @media only screen and (min-width: 1280px) {
-      #footer > #social {
-        text-align: left; } }
+    grid-area: social;
+    /*		@media only screen and (_breakpoint(large)) {
+    			text-align: left;
+    		}
+    */ }
   #footer > #copyright {
     grid-area: copyright; }
   #footer > #credits {
