@@ -724,32 +724,32 @@ and fully expanded by default on larger screens */
         grid-template-areas: "A B C" "D E F"; } }
   #content > .style_showcase > #showcase_grid > #showcase_1 {
     grid-area: A;
-    background: url("../images/showcase/showcase_A.jpg");
+    background-image: url("../images/showcase/showcase_A.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .style_showcase > #showcase_grid > #showcase_2 {
     grid-area: B;
-    background: url("../images/showcase/showcase_B.jpg");
+    background-image: url("../images/showcase/showcase_B.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .style_showcase > #showcase_grid > #showcase_3 {
     grid-area: C;
-    background: url("../images/showcase/showcase_C.jpg");
+    background-image: url("../images/showcase/showcase_C.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .style_showcase > #showcase_grid > #showcase_4 {
     grid-area: D;
-    background: url("../images/showcase/showcase_D.jpg");
+    background-image: url("../images/showcase/showcase_D.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .style_showcase > #showcase_grid > #showcase_5 {
     grid-area: E;
-    background: url("../images/showcase/showcase_E.jpg");
+    background-image: url("../images/showcase/showcase_E.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .style_showcase > #showcase_grid > #showcase_6 {
     grid-area: F;
-    background: url("../images/showcase/showcase_F.jpg");
+    background-image: url("../images/showcase/showcase_F.jpg");
     background-size: cover;
     background-repeat: no-repeat; }
   #content > .fullscreen {
