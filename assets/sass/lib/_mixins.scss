@@ -1,8 +1,0 @@
-/// Helper mixin to add showcase in _layout.scss
-/// @param {string} $numbering A-F (can be further expanded)
-@mixin showcase($numbering) {
-	grid-area: $numbering;
-	background-image: url('../images/showcase/showcase_#{$numbering}.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-}

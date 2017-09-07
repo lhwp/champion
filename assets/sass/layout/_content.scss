@@ -57,11 +57,10 @@
 	> .style_welcome {
 		color: _palette(bg);
 
-		@include vendor('display', 'grid');
-		grid-template-columns: 1fr;
-		grid-template-rows: 4fr auto 1fr;
 		> .grid_box {
-			grid-row: 2/3;
+			position: absolute;
+			top: 30%; right: 0;
+			bottom: 0; left: 0;
 		}
 		
 		@media only screen and (_breakpoint(small)) {
@@ -104,14 +103,55 @@
 */
 
 	> .style_showcase {
-		
+
+// Non-CSS Grid implementation starts here (Use until Edge HTML16)
 		> #showcase_grid {
+			> .responsive {
+				box-sizing: border-box;
+				float: left;
+				width: 100%;
+				padding-bottom: 1rem;
+				padding-left: 1rem;
+				padding-right: 1rem;
+
+				@media only screen and (_breakpoint(medium)) {
+					width: 49.99999%;
+				}
+				@media only screen and (_breakpoint(large)) {
+					width: 24.99999%;
+				}
+
+				> img {
+					border: 1px solid #ccc;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+// Non-CSS Grid implementation ends here
+
+
+/* Use the above implementation until Edge HTML16 where CSS Grid will be properly supported
+// CSS Grid implementation starts here
+		> #showcase_grid {
+
+			> .responsive {
+				box-sizing: border-box;
+				width: 100%;
+
+				> img {
+					border: 1px solid #ccc;
+					width: 100%;
+					height: auto;
+				}
+			}
+
 			@include vendor('display', 'grid');
 			@include vendor('justify-content', 'center');
 			text-align: center;
 
-			grid-template-columns: 16rem;
-			grid-template-rows: repeat(6, 12rem);
+			grid-template-columns: 1fr;
+			grid-template-rows: auto;
 			grid-gap: 2rem;
 			grid-template-areas:
 				"A"
@@ -119,50 +159,52 @@
 				"C"
 				"D"
 				"E"
-				"F";
+				"F"
+				"G"
+				"H";
 
 			@media only screen and (_breakpoint(medium)) {
-				grid-template-columns: 20rem 20rem;
-				grid-template-rows: repeat(3, 15rem);
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: auto;
 				grid-gap: 2rem;
 				grid-template-areas:
 					"A B"
 					"C D"
-					"E F";
+					"E F"
+					"G H";
 			}
 
 			@media only screen and (_breakpoint(large)) {
-				grid-template-columns: 20rem 20rem 20rem;
-				grid-template-rows: repeat(2, 15rem);
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				grid-template-rows: auto;
 				grid-gap: 2em;
 				grid-template-areas:
-					"A B C"
-					"D E F";
+					"A B C D"
+					"E F G H";
 			}
-		}
-
-		> #showcase_grid {
+	
 			> #showcase_1 {
-				@include showcase(A); // use mixin for readability
+				grid-area: A;
 			}
 			> #showcase_2 {
-				@include showcase(B); // use mixin for readability
+				grid-area: B;
 			}
 			> #showcase_3 {
-				@include showcase(C); // use mixin for readability
+				grid-area: C;
 			}
 			> #showcase_4 {
-				@include showcase(D); // use mixin for readability
+				grid-area: D;
 			}
 			> #showcase_5 {
-				@include showcase(E); // use mixin for readability
+				grid-area: E;
 			}
 			>#showcase_6 {
-				@include showcase(F); // use mixin for readability
+				grid-area: F;
 			}
 		}
+// CSS Grid implementation ends here
+*/
 	}
-
 
 	> .fullscreen {
 		min-height: 100vh;

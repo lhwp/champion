@@ -674,12 +674,13 @@ button {
     background-attachment: fixed, fixed;
     background-position: center, center; }
   #content > .style_welcome {
-    color: white;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 4fr auto 1fr; }
+    color: white; }
     #content > .style_welcome > .grid_box, #content > .style_welcome > .video_box {
-      grid-row: 2/3; }
+      position: absolute;
+      top: 30%;
+      right: 0;
+      bottom: 0;
+      left: 0; }
     @media only screen and (max-width: 767px) {
       #content > .style_welcome h2 {
         font-size: 3rem;
@@ -700,59 +701,97 @@ button {
         margin: 0;
         font-size: 1.5rem;
         letter-spacing: 0.08em; } }
-  #content > .style_showcase > #showcase_grid {
-    display: grid;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    -ms-justify-content: center;
-    justify-content: center;
-    text-align: center;
-    grid-template-columns: 16rem;
-    grid-template-rows: repeat(6, 12rem);
-    grid-gap: 2rem;
-    grid-template-areas: "A" "B" "C" "D" "E" "F"; }
-    @media only screen and (min-width: 768px) {
-      #content > .style_showcase > #showcase_grid {
-        grid-template-columns: 20rem 20rem;
-        grid-template-rows: repeat(3, 15rem);
-        grid-gap: 2rem;
-        grid-template-areas: "A B" "C D" "E F"; } }
-    @media only screen and (min-width: 1280px) {
-      #content > .style_showcase > #showcase_grid {
-        grid-template-columns: 20rem 20rem 20rem;
-        grid-template-rows: repeat(2, 15rem);
-        grid-gap: 2em;
-        grid-template-areas: "A B C" "D E F"; } }
-  #content > .style_showcase > #showcase_grid > #showcase_1 {
-    grid-area: A;
-    background-image: url("../images/showcase/showcase_A.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #content > .style_showcase > #showcase_grid > #showcase_2 {
-    grid-area: B;
-    background-image: url("../images/showcase/showcase_B.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #content > .style_showcase > #showcase_grid > #showcase_3 {
-    grid-area: C;
-    background-image: url("../images/showcase/showcase_C.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #content > .style_showcase > #showcase_grid > #showcase_4 {
-    grid-area: D;
-    background-image: url("../images/showcase/showcase_D.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #content > .style_showcase > #showcase_grid > #showcase_5 {
-    grid-area: E;
-    background-image: url("../images/showcase/showcase_E.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #content > .style_showcase > #showcase_grid > #showcase_6 {
-    grid-area: F;
-    background-image: url("../images/showcase/showcase_F.jpg");
-    background-size: cover;
-    background-repeat: no-repeat; }
+  #content > .style_showcase {
+    /* Use the above implementation until Edge HTML16 where CSS Grid will be properly supported
+    // CSS Grid implementation starts here
+    		> #showcase_grid {
+    
+    			> .responsive {
+    				box-sizing: border-box;
+    				width: 100%;
+    
+    				> img {
+    					border: 1px solid #ccc;
+    					width: 100%;
+    					height: auto;
+    				}
+    			}
+    
+    			@include vendor('display', 'grid');
+    			@include vendor('justify-content', 'center');
+    			text-align: center;
+    
+    			grid-template-columns: 1fr;
+    			grid-template-rows: auto;
+    			grid-gap: 2rem;
+    			grid-template-areas:
+    				"A"
+    				"B"
+    				"C"
+    				"D"
+    				"E"
+    				"F"
+    				"G"
+    				"H";
+    
+    			@media only screen and (_breakpoint(medium)) {
+    				grid-template-columns: 1fr 1fr;
+    				grid-template-rows: auto;
+    				grid-gap: 2rem;
+    				grid-template-areas:
+    					"A B"
+    					"C D"
+    					"E F"
+    					"G H";
+    			}
+    
+    			@media only screen and (_breakpoint(large)) {
+    				grid-template-columns: 1fr 1fr 1fr 1fr;
+    				grid-template-rows: auto;
+    				grid-gap: 2em;
+    				grid-template-areas:
+    					"A B C D"
+    					"E F G H";
+    			}
+    	
+    			> #showcase_1 {
+    				grid-area: A;
+    			}
+    			> #showcase_2 {
+    				grid-area: B;
+    			}
+    			> #showcase_3 {
+    				grid-area: C;
+    			}
+    			> #showcase_4 {
+    				grid-area: D;
+    			}
+    			> #showcase_5 {
+    				grid-area: E;
+    			}
+    			>#showcase_6 {
+    				grid-area: F;
+    			}
+    		}
+    // CSS Grid implementation ends here
+    */ }
+    #content > .style_showcase > #showcase_grid > .responsive {
+      box-sizing: border-box;
+      float: left;
+      width: 100%;
+      padding-bottom: 1rem;
+      padding-left: 1rem;
+      padding-right: 1rem; }
+      @media only screen and (min-width: 768px) {
+        #content > .style_showcase > #showcase_grid > .responsive {
+          width: 49.99999%; } }
+      @media only screen and (min-width: 1280px) {
+        #content > .style_showcase > #showcase_grid > .responsive {
+          width: 24.99999%; } }
+      #content > .style_showcase > #showcase_grid > .responsive > img {
+        border: 1px solid #ccc;
+        width: 100%;
+        height: auto; }
   #content > .fullscreen {
     min-height: 100vh; }
 
