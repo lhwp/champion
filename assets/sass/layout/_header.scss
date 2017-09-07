@@ -1,8 +1,8 @@
 #header {
 	position: fixed;
+	z-index: _misc(z-index-base) + 1;
 	left: 0;
 	top: 0;
-	z-index: 1000;
 	width: 100%;
 	background-color: _palette(header, bg);
 	height: 3rem;
@@ -30,7 +30,7 @@
 
 		> #overlay_menu {
 			position: fixed;
-			z-index: 1000;
+			z-index: _misc(z-index-base) + 1;
 			top: 3rem; // toggled with jquery slideToggle()
 			left: 0;
 			height: 3rem;

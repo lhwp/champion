@@ -1,4 +1,6 @@
 #footer {
+	position: relative;
+	z-index: _misc(z-index-base);
 	@include vendor('display', 'grid');
 	text-align: center;
 	grid-template-columns: 1fr 1fr;
@@ -28,6 +30,8 @@
 	color: _palette(footer, fg);
 	overflow: hidden;
 	min-height: 50vh;	// needed to remove white space under the footer
+	z-index: _misc(z-index-base) +1;
+
 
 	> .fa-inverse {
 		color: _palette(footer, bg);
@@ -67,4 +71,6 @@
 		}
 	}
 
+	padding-top: 3rem;
+	padding-bottom: 3rem;
 }

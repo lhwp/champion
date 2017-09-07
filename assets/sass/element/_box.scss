@@ -10,14 +10,14 @@
 .video_box {
 	@extend .grid_box;
 	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
+	padding-bottom: percentage(9/16); /* 16:9 */
 	padding-top: 25px;
 	height: 0;
 	max-width: 80%;
 	@media only screen and (_breakpoint(medium)) {
 		/* Try to maintain 16:9 on larger screen */
-		padding-bottom: calc(56.25% / 2);
-		padding-top: calc(25px / 2);
+		padding-bottom: percentage(9/16/2);
+		padding-top: 25px / 2;
 		max-width: 40%;
 	}
 	> iframe {

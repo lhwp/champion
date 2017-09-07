@@ -475,8 +475,8 @@ p, ul, ol, dl, table {
   @media only screen and (min-width: 768px) {
     .video_box {
       /* Try to maintain 16:9 on larger screen */
-      padding-bottom: calc(56.25% / 2);
-      padding-top: calc(25px / 2);
+      padding-bottom: 28.125%;
+      padding-top: 25px / 2;
       max-width: 40%; } }
   .video_box > iframe {
     position: absolute;
@@ -522,9 +522,9 @@ button {
 
 #header {
   position: fixed;
+  z-index: 101;
   left: 0;
   top: 0;
-  z-index: 1000;
   width: 100%;
   background-color: white;
   height: 3rem; }
@@ -555,7 +555,7 @@ button {
         color: #414141; }
       #header > #overlay_menu {
         position: fixed;
-        z-index: 1000;
+        z-index: 101;
         top: 3rem;
         left: 0;
         height: 3rem;
@@ -639,167 +639,179 @@ button {
   text-align: center;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  grid-template-areas: "welcome" "intro" "services" "showcase" "contact"; }
+  grid-template-areas: "welcome" "intro" "services" "showcase"; }
   #content > #welcome {
-    grid-area: welcome; }
+    grid-area: welcome;
+    position: relative;
+    z-index: 100; }
   #content > #intro {
-    grid-area: intro; }
+    grid-area: intro;
+    position: relative;
+    z-index: 100; }
   #content > #services {
-    grid-area: services; }
+    grid-area: services;
+    position: relative;
+    z-index: 100; }
   #content > #showcase {
-    grid-area: showcase; }
+    grid-area: showcase;
+    position: relative;
+    z-index: 100; }
 
-#content {
-  /* Style classes for these main layout sections */
-  /*
-  	> .style_intro {
-  		// nothing to override
-  	}
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/background/plane.jpg");
+  background-size: cover, cover;
+  background-attachment: fixed, fixed;
+  background-position: center center, center center;
+  position: relative;
+  z-index: 99; }
+
+#content > #welcome {
+  color: white; }
+  #content > #welcome > .grid_box, #content > #welcome > .video_box {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+  @media only screen and (max-width: 767px) {
+    #content > #welcome h2 {
+      font-size: 3rem;
+      line-height: 1em; }
+    #content > #welcome h1 {
+      font-family: "Pacifico", cursive;
+      font-weight: 300;
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.08em; } }
+  @media only screen and (min-width: 768px) {
+    #content > #welcome h2 {
+      font-size: 4.25rem;
+      line-height: 1em; }
+    #content > #welcome h1 {
+      font-family: "Pacifico", cursive;
+      font-weight: 300;
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em; } }
+#content > #intro {
+  background-color: white;
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+#content > #services {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), yellow;
+  background-size: cover, cover;
+  background-attachment: fixed, fixed;
+  background-position: center, center;
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+#content > #showcase {
+  background-color: white;
+  /* Use the above implementation until Edge HTML16 where CSS Grid will be properly supported
+  // CSS Grid implementation starts here
+  		> #showcase_grid {
   
-  	> .style_services {
-  		// nothing to override
-  	}
-  */ }
-  #content > #welcome {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/background/plane.jpg");
-    background-size: 256px 256px, cover;
-    background-attachment: fixed, fixed;
-    background-position: top left, center center;
-    background-repeat: repeat, no-repeat; }
-  #content > #intro {
-    background-color: white; }
-  #content > #services {
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), yellow;
-    background-size: cover, cover;
-    background-attachment: fixed, fixed;
-    background-position: center, center; }
-  #content > .style_welcome {
-    color: white; }
-    #content > .style_welcome > .grid_box, #content > .style_welcome > .video_box {
-      position: absolute;
-      top: 30%;
-      right: 0;
-      bottom: 0;
-      left: 0; }
-    @media only screen and (max-width: 767px) {
-      #content > .style_welcome h2 {
-        font-size: 3rem;
-        line-height: 1em; }
-      #content > .style_welcome h1 {
-        font-family: "Pacifico", cursive;
-        font-weight: 300;
-        margin: 0;
-        font-size: 1rem;
-        letter-spacing: 0.08em; } }
+  			> .responsive {
+  				box-sizing: border-box;
+  				width: 100%;
+  
+  				> img {
+  					border: 1px solid #ccc;
+  					width: 100%;
+  					height: auto;
+  				}
+  			}
+  
+  			@include vendor('display', 'grid');
+  			@include vendor('justify-content', 'center');
+  			text-align: center;
+  
+  			grid-template-columns: 1fr;
+  			grid-template-rows: auto;
+  			grid-gap: 2rem;
+  			grid-template-areas:
+  				"A"
+  				"B"
+  				"C"
+  				"D"
+  				"E"
+  				"F"
+  				"G"
+  				"H";
+  
+  			@media only screen and (_breakpoint(medium)) {
+  				grid-template-columns: 1fr 1fr;
+  				grid-template-rows: auto;
+  				grid-gap: 2rem;
+  				grid-template-areas:
+  					"A B"
+  					"C D"
+  					"E F"
+  					"G H";
+  			}
+  
+  			@media only screen and (_breakpoint(large)) {
+  				grid-template-columns: 1fr 1fr 1fr 1fr;
+  				grid-template-rows: auto;
+  				grid-gap: 2em;
+  				grid-template-areas:
+  					"A B C D"
+  					"E F G H";
+  			}
+  	
+  			> #showcase_1 {
+  				grid-area: A;
+  			}
+  			> #showcase_2 {
+  				grid-area: B;
+  			}
+  			> #showcase_3 {
+  				grid-area: C;
+  			}
+  			> #showcase_4 {
+  				grid-area: D;
+  			}
+  			> #showcase_5 {
+  				grid-area: E;
+  			}
+  			>#showcase_6 {
+  				grid-area: F;
+  			}
+  		}
+  // CSS Grid implementation ends here
+  */
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+  #content > #showcase > #showcase_grid > .responsive {
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem; }
     @media only screen and (min-width: 768px) {
-      #content > .style_welcome h2 {
-        font-size: 4.25rem;
-        line-height: 1em; }
-      #content > .style_welcome h1 {
-        font-family: "Pacifico", cursive;
-        font-weight: 300;
-        margin: 0;
-        font-size: 1.5rem;
-        letter-spacing: 0.08em; } }
-  #content > .style_showcase {
-    /* Use the above implementation until Edge HTML16 where CSS Grid will be properly supported
-    // CSS Grid implementation starts here
-    		> #showcase_grid {
-    
-    			> .responsive {
-    				box-sizing: border-box;
-    				width: 100%;
-    
-    				> img {
-    					border: 1px solid #ccc;
-    					width: 100%;
-    					height: auto;
-    				}
-    			}
-    
-    			@include vendor('display', 'grid');
-    			@include vendor('justify-content', 'center');
-    			text-align: center;
-    
-    			grid-template-columns: 1fr;
-    			grid-template-rows: auto;
-    			grid-gap: 2rem;
-    			grid-template-areas:
-    				"A"
-    				"B"
-    				"C"
-    				"D"
-    				"E"
-    				"F"
-    				"G"
-    				"H";
-    
-    			@media only screen and (_breakpoint(medium)) {
-    				grid-template-columns: 1fr 1fr;
-    				grid-template-rows: auto;
-    				grid-gap: 2rem;
-    				grid-template-areas:
-    					"A B"
-    					"C D"
-    					"E F"
-    					"G H";
-    			}
-    
-    			@media only screen and (_breakpoint(large)) {
-    				grid-template-columns: 1fr 1fr 1fr 1fr;
-    				grid-template-rows: auto;
-    				grid-gap: 2em;
-    				grid-template-areas:
-    					"A B C D"
-    					"E F G H";
-    			}
-    	
-    			> #showcase_1 {
-    				grid-area: A;
-    			}
-    			> #showcase_2 {
-    				grid-area: B;
-    			}
-    			> #showcase_3 {
-    				grid-area: C;
-    			}
-    			> #showcase_4 {
-    				grid-area: D;
-    			}
-    			> #showcase_5 {
-    				grid-area: E;
-    			}
-    			>#showcase_6 {
-    				grid-area: F;
-    			}
-    		}
-    // CSS Grid implementation ends here
-    */ }
-    #content > .style_showcase > #showcase_grid > .responsive {
-      box-sizing: border-box;
-      float: left;
+      #content > #showcase > #showcase_grid > .responsive {
+        width: 49.99999%; } }
+    @media only screen and (min-width: 1280px) {
+      #content > #showcase > #showcase_grid > .responsive {
+        width: 24.99999%; } }
+    #content > #showcase > #showcase_grid > .responsive > img {
+      border: 1px solid #ccc;
       width: 100%;
-      padding-bottom: 1rem;
-      padding-left: 1rem;
-      padding-right: 1rem; }
-      @media only screen and (min-width: 768px) {
-        #content > .style_showcase > #showcase_grid > .responsive {
-          width: 49.99999%; } }
-      @media only screen and (min-width: 1280px) {
-        #content > .style_showcase > #showcase_grid > .responsive {
-          width: 24.99999%; } }
-      #content > .style_showcase > #showcase_grid > .responsive > img {
-        border: 1px solid #ccc;
-        width: 100%;
-        height: auto; }
-  #content > .fullscreen {
-    min-height: 100vh; }
+      height: auto; }
+#content > .fullscreen {
+  min-height: 100vh; }
 
 #header {
   position: fixed;
+  z-index: 101;
   left: 0;
   top: 0;
-  z-index: 1000;
   width: 100%;
   background-color: white;
   height: 3rem; }
@@ -830,7 +842,7 @@ button {
         color: #414141; }
       #header > #overlay_menu {
         position: fixed;
-        z-index: 1000;
+        z-index: 101;
         top: 3rem;
         left: 0;
         height: 3rem;
@@ -901,6 +913,8 @@ button {
           padding-right: 0; } }
 
 #footer {
+  position: relative;
+  z-index: 100;
   display: grid;
   text-align: center;
   grid-template-columns: 1fr 1fr;
@@ -921,7 +935,10 @@ button {
   background: #39454b;
   color: white;
   overflow: hidden;
-  min-height: 50vh; }
+  min-height: 50vh;
+  z-index: 101;
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
   #footer > .fa-inverse {
     color: #39454b; }
   #footer a {
@@ -953,6 +970,8 @@ button {
       text-decoration: underline; }
 
 #footer {
+  position: relative;
+  z-index: 100;
   display: grid;
   text-align: center;
   grid-template-columns: 1fr 1fr;
@@ -973,7 +992,10 @@ button {
   background: #39454b;
   color: white;
   overflow: hidden;
-  min-height: 50vh; }
+  min-height: 50vh;
+  z-index: 101;
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
   #footer > .fa-inverse {
     color: #39454b; }
   #footer a {
@@ -1003,5 +1025,18 @@ button {
     color: rgba(185, 186, 187, 0.2); }
     #footer > #credits > a {
       text-decoration: underline; }
+
+#content:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/background/plane.jpg");
+  background-size: cover, cover;
+  background-attachment: fixed, fixed;
+  background-position: center center, center center;
+  z-index: 99; }
 
 /*# sourceMappingURL=main.css.map */

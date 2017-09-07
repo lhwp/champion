@@ -17,3 +17,28 @@
 @import 'layout/header.scss';
 @import 'layout/content.scss';
 @import 'layout/footer.scss';
+
+
+
+#content:after {
+	// On Safari / iOS, setting background of #welcome to fixed causing the 
+	// image to expand too much to be overly-pixelated (as it uses
+	// the entire whole body height for the stretching).  So we set it to
+	// content:after
+	content:"";
+	position:fixed; // stretch a fixed position to the whole screen
+	top:0;
+	height:100vh; // fix for mobile browser address bar appearing disappearing
+	left:0;
+	right:0;
+	
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
+	//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
+	background-size: cover, cover;
+	background-attachment: fixed, fixed;
+	background-position: center center, center center;
+    //background-repeat: no-repeat, no-repeat;
+    
+    z-index: _misc(z-index-base) - 1; // needed to keep in the background
+}
+

@@ -11,52 +11,62 @@
 		"welcome"
 		"intro"
 		"services"
-		"showcase"
-		"contact";
+		"showcase";
 
 	> #welcome {
 		grid-area: welcome;
+		position: relative;
+		z-index: _misc(z-index-base);
 	}
 
 	> #intro {
 		grid-area: intro;
+		position: relative;
+		z-index: _misc(z-index-base);
 	}
 	
 	> #services {
 		grid-area: services;
+		position: relative;
+		z-index: _misc(z-index-base);
 	}
 
 	> #showcase {
 		grid-area: showcase;
+		position: relative;
+		z-index: _misc(z-index-base);
 	}
+}
+
+
+body:after {
+	// On Safari / iOS, setting background of #welcome to fixed causing the 
+	// image to expand too much to be overly-pixelated (as it uses
+	// the entire whole body height for the stretching).  So we set it to
+	// content:after
+	content:"";
+	position:fixed; // stretch a fixed position to the whole screen
+	top:0;
+	height:100vh; // fix for mobile browser address bar appearing disappearing
+	left:0;
+	right:0;
+	
+	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
+	//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
+	background-size: cover, cover;
+	background-attachment: fixed, fixed;
+	background-position: center center, center center;
+    //background-repeat: no-repeat, no-repeat;
+	
+	position: relative;
+    z-index: _misc(z-index-base) - 1; // needed to keep in the background
 }
 
 
 #content {
 	> #welcome {
-		background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
-		//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
-		background-size: 256px 256px, cover;
-		background-attachment: fixed, fixed;
-		background-position: top left, center center;
-		background-repeat: repeat, no-repeat;
-	}
-
-	> #intro {
-		background-color: _palette(bg);
-	}
-
-	> #services {
-		background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) ), yellow;
-		background-size: cover, cover;
-		background-attachment: fixed, fixed;
-		background-position: center, center;
-	}
-
-	/* Style classes for these main layout sections */
-	> .style_welcome {
 		color: _palette(bg);
-
+		
 		> .grid_box {
 			position: absolute;
 			top: 30%; right: 0;
@@ -92,18 +102,26 @@
 		}
 	}
 
-/*
-	> .style_intro {
-		// nothing to override
+	> #intro {
+		background-color: _palette(bg);
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+	
+	> #services {
+		background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3) ), yellow;
+		background-size: cover, cover;
+		background-attachment: fixed, fixed;
+		background-position: center, center;
+
+		padding-top: 3rem;
+		padding-bottom: 3rem;
 	}
 
-	> .style_services {
-		// nothing to override
-	}
-*/
 
-	> .style_showcase {
-
+	> #showcase {
+		background-color: _palette(bg);
+		
 // Non-CSS Grid implementation starts here (Use until Edge HTML16)
 		> #showcase_grid {
 			> .responsive {
@@ -204,7 +222,10 @@
 		}
 // CSS Grid implementation ends here
 */
+		padding-top: 3rem;
+		padding-bottom: 3rem;
 	}
+
 
 	> .fullscreen {
 		min-height: 100vh;
