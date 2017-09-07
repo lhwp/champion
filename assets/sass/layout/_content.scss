@@ -39,13 +39,14 @@
 }
 
 
-body:after {
-	// On Safari / iOS, setting background of #welcome to fixed causing the 
-	// image to expand too much to be overly-pixelated (as it uses
-	// the entire whole body height for the stretching).  So we set it to
-	// content:after
+#content:after {
+	// On Safari / iOS, setting background of #welcome to cover with 
+	// background-attachment to fixed causes the image to expand
+	// too much to be overly-pixelated (as it uses the document's
+	// height instead of viewport height for the stretching).
+	// Work around: Fix the element itself instead of the background
 	content:"";
-	position:fixed; // stretch a fixed position to the whole screen
+	position: fixed;
 	top:0;
 	height:100vh; // fix for mobile browser address bar appearing disappearing
 	left:0;
@@ -53,11 +54,12 @@ body:after {
 	
 	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
 	//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
-	background-size: cover, cover;
-	background-attachment: fixed, fixed;
+
 	background-position: center center, center center;
-    //background-repeat: no-repeat, no-repeat;
-	
+	background-repeat: no-repeat, no-repeat;
+	@include vendor('background-size', 'cover, cover');
+	@include vendor('backface-visibility', 'hidden');
+
 	position: relative;
     z-index: _misc(z-index-base) - 1; // needed to keep in the background
 }
@@ -65,26 +67,42 @@ body:after {
 
 #content {
 	> #welcome {
-		color: _palette(bg);
+/*	
+		// Alternatively, only fix background-attachment on larger devices
+		// to disable on iOS devices.  But cannot guarantee as devices
+		// get bigger.
+		background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
+		//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
 		
+		background-position: center center, center center;
+		-webkit-background-size: cover, cover;
+		-moz-background-size: cover, cover;
+		-o-background-size: cover, cover;
+		background-size: cover, cover;
+
+		@media only screen and (_breakpoint(large)) {
+			// Only do this on large devices
+			background-attachment: fixed, fixed;
+		}
+*/
+
 		> .grid_box {
 			position: absolute;
 			top: 30%; right: 0;
 			bottom: 0; left: 0;
 		}
 		
-		@media only screen and (_breakpoint(small)) {
-			h2 {
-				font-size: 3rem;
-				line-height: 1em;
-			}
-			h1 {
-				font-family: _font(family2);
-				font-weight: _font(weight2);
-				margin: 0;
-				font-size: 1rem;
-				letter-spacing: 0.08em;
-			}
+		color: _palette(bg);
+		h2 {
+			font-size: 3rem;
+			line-height: 1em;
+		}
+		h1 {
+			font-family: _font(family2);
+			font-weight: _font(weight2);
+			margin: 0;
+			font-size: 1rem;
+			letter-spacing: 0.08em;
 		}
 
 		@media only screen and (_breakpoint(medium)) {

@@ -459,6 +459,12 @@ blockquote {
 p, ul, ol, dl, table {
   margin-bottom: 1em; }
 
+html {
+  height: 100vh;
+  /* set viewport constraint */
+  min-height: 100%;
+  /* enforce height */ }
+
 .grid_box, .video_box {
   max-width: 80%;
   margin: 2rem auto 0 auto; }
@@ -657,7 +663,7 @@ button {
     position: relative;
     z-index: 100; }
 
-body:after {
+#content:after {
   content: "";
   position: fixed;
   top: 0;
@@ -665,13 +671,35 @@ body:after {
   left: 0;
   right: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/background/plane.jpg");
-  background-size: cover, cover;
-  background-attachment: fixed, fixed;
   background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
   position: relative;
   z-index: 99; }
 
 #content > #welcome {
+  /*	
+  		// Alternatively, only fix background-attachment on larger devices
+  		// to disable on iOS devices.  But cannot guarantee as devices
+  		// get bigger.
+  		background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/background/plane.jpg'); 
+  		//https://www.pexels.com/photo/action-air-aircraft-airplane-243167/
+  		
+  		background-position: center center, center center;
+  		-webkit-background-size: cover, cover;
+  		-moz-background-size: cover, cover;
+  		-o-background-size: cover, cover;
+  		background-size: cover, cover;
+  
+  		@media only screen and (_breakpoint(large)) {
+  			// Only do this on large devices
+  			background-attachment: fixed, fixed;
+  		}
+  */
   color: white; }
   #content > #welcome > .grid_box, #content > #welcome > .video_box {
     position: absolute;
@@ -679,16 +707,15 @@ body:after {
     right: 0;
     bottom: 0;
     left: 0; }
-  @media only screen and (max-width: 767px) {
-    #content > #welcome h2 {
-      font-size: 3rem;
-      line-height: 1em; }
-    #content > #welcome h1 {
-      font-family: "Pacifico", cursive;
-      font-weight: 300;
-      margin: 0;
-      font-size: 1rem;
-      letter-spacing: 0.08em; } }
+  #content > #welcome h2 {
+    font-size: 3rem;
+    line-height: 1em; }
+  #content > #welcome h1 {
+    font-family: "Pacifico", cursive;
+    font-weight: 300;
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 0.08em; }
   @media only screen and (min-width: 768px) {
     #content > #welcome h2 {
       font-size: 4.25rem;
@@ -1025,18 +1052,5 @@ body:after {
     color: rgba(185, 186, 187, 0.2); }
     #footer > #credits > a {
       text-decoration: underline; }
-
-#content:after {
-  content: "";
-  position: fixed;
-  top: 0;
-  height: 100vh;
-  left: 0;
-  right: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/background/plane.jpg");
-  background-size: cover, cover;
-  background-attachment: fixed, fixed;
-  background-position: center center, center center;
-  z-index: 99; }
 
 /*# sourceMappingURL=main.css.map */
