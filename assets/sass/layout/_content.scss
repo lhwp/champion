@@ -59,15 +59,14 @@
 	background-repeat: no-repeat, no-repeat;
 	@include vendor('background-size', 'cover, cover');
 	@include vendor('backface-visibility', 'hidden');
-
-	position: relative;
-    z-index: _misc(z-index-base) - 1; // needed to keep in the background
+	
+	z-index: _misc(z-index-base) - 1; // needed to keep in the background
 }
 
 
 #content {
 	> #welcome {
-/*	
+/*
 		// Alternatively, only fix background-attachment on larger devices
 		// to disable on iOS devices.  But cannot guarantee as devices
 		// get bigger.

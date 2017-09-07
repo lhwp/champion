@@ -678,11 +678,10 @@ button {
   -webkit-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
-  position: relative;
   z-index: 99; }
 
 #content > #welcome {
-  /*	
+  /*
   		// Alternatively, only fix background-attachment on larger devices
   		// to disable on iOS devices.  But cannot guarantee as devices
   		// get bigger.
